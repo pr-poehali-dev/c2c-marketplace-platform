@@ -344,3 +344,83 @@
 .banner-gradient-3 {
   background: linear-gradient(135deg, #f91155 0%, #ff6a00 100%);
 }
+
+/* Floating emblem animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-12px) rotate(1.5deg);
+  }
+  75% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+
+@keyframes float-shadow {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: scaleX(0.75);
+    opacity: 0.15;
+  }
+  75% {
+    transform: scaleX(0.85);
+    opacity: 0.2;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(0, 91, 255, 0.4),
+      0 0 40px rgba(0, 91, 255, 0.2),
+      0 20px 40px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 35px rgba(0, 91, 255, 0.65),
+      0 0 70px rgba(0, 91, 255, 0.35),
+      0 24px 48px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.floating-emblem {
+  animation:
+    float 4s ease-in-out infinite,
+    glow-pulse 4s ease-in-out infinite;
+}
+
+.floating-emblem-shadow {
+  animation: float-shadow 4s ease-in-out infinite;
+}
+
+.floating-emblem-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #c0d8ff 40%,
+    #ffffff 60%,
+    #c0d8ff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}

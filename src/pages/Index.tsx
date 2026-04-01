@@ -653,6 +653,39 @@ const Index = () => {
         </div>
       </nav>
       <div className="md:hidden h-16" />
+
+      {/* ── FLOATING EMBLEM ── */}
+      <div className="fixed bottom-24 right-6 md:bottom-10 md:right-10 z-40 flex flex-col items-center select-none pointer-events-none">
+        {/* Emblem */}
+        <div
+          className="floating-emblem w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center cursor-pointer pointer-events-auto"
+          style={{
+            background: "linear-gradient(135deg, #005bff 0%, #7b2fff 100%)",
+            border: "2px solid rgba(255,255,255,0.25)",
+          }}
+        >
+          {/* Ozon logo SVG-style text */}
+          <div className="flex flex-col items-center justify-center gap-0">
+            <span
+              className="floating-emblem-text font-black leading-none tracking-tight"
+              style={{ fontSize: "22px" }}
+            >
+              ozon
+            </span>
+            {/* Dot accent */}
+            <div className="flex gap-[3px] mt-[3px]">
+              <div className="w-[5px] h-[5px] rounded-full bg-white/80" />
+              <div className="w-[5px] h-[5px] rounded-full bg-white/50" />
+              <div className="w-[5px] h-[5px] rounded-full bg-white/30" />
+            </div>
+          </div>
+        </div>
+        {/* Shadow under emblem */}
+        <div
+          className="floating-emblem-shadow w-10 h-2 rounded-full mt-2"
+          style={{ background: "rgba(0,91,255,0.35)", filter: "blur(6px)" }}
+        />
+      </div>
     </div>
   );
 };

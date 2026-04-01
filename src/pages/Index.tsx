@@ -196,8 +196,11 @@ function ProductCard({ product }: { product: typeof products[0] }) {
     <div className="product-card bg-white rounded-xl overflow-hidden flex flex-col cursor-pointer relative group">
       {/* Wishlist button */}
       <button
+        type="button"
         className="absolute top-2 right-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md transition-all duration-200 hover:scale-110"
         onClick={(e) => { e.stopPropagation(); setInWishlist(!inWishlist); }}
+        aria-label={inWishlist ? "Убрать из избранного" : "В избранное"}
+        aria-pressed={inWishlist}
       >
         <Icon name="Heart" size={16} className={inWishlist ? "text-red-500 fill-red-500" : "text-gray-400"} />
       </button>
@@ -245,6 +248,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
 
         {/* Add to cart button */}
         <button
+          type="button"
           className={`add-to-cart-btn w-full mt-1 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
             inCart
               ? "bg-green-500 text-white"
@@ -321,7 +325,7 @@ const Index = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </form>
-        <button className="relative flex-shrink-0">
+        <button type="button" className="relative flex-shrink-0" aria-label="Корзина">
           <Icon name="ShoppingCart" size={22} className="text-gray-600" />
           {cartCount > 0 && (
             <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -341,7 +345,7 @@ const Index = () => {
           </a>
 
           {/* City picker */}
-          <button className="flex items-center gap-1 text-white/80 hover:text-white text-sm whitespace-nowrap transition-colors">
+          <button type="button" className="flex items-center gap-1 text-white/80 hover:text-white text-sm whitespace-nowrap transition-colors">
             <Icon name="MapPin" size={14} />
             <span>Москва</span>
           </button>
@@ -358,6 +362,7 @@ const Index = () => {
             <button
               type="submit"
               className="px-5 py-2.5 text-blue-600 hover:bg-blue-50 transition-colors"
+              aria-label="Поиск"
             >
               <Icon name="Search" size={18} />
             </button>
@@ -365,19 +370,19 @@ const Index = () => {
 
           {/* Right icons */}
           <div className="flex items-center gap-1 flex-shrink-0">
-            <button className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl hover:bg-blue-600/40 transition-colors text-white">
+            <button type="button" className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl hover:bg-blue-600/40 transition-colors text-white">
               <Icon name="User" size={20} />
               <span className="text-xs">Войти</span>
             </button>
-            <button className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl hover:bg-blue-600/40 transition-colors text-white">
+            <button type="button" className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl hover:bg-blue-600/40 transition-colors text-white">
               <Icon name="Heart" size={20} />
               <span className="text-xs">Избранное</span>
             </button>
-            <button className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl hover:bg-blue-600/40 transition-colors text-white relative">
+            <button type="button" className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl hover:bg-blue-600/40 transition-colors text-white relative">
               <div className="relative">
                 <Icon name="ShoppingCart" size={20} />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center w-5 h-5">
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
@@ -391,6 +396,7 @@ const Index = () => {
         <div className="bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6 flex items-center gap-0 overflow-x-auto scroll-x">
             <button
+              type="button"
               className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors rounded-xl whitespace-nowrap"
             >
               <Icon name="Menu" size={16} />
@@ -425,7 +431,7 @@ const Index = () => {
                 {banners[activeBanner].title}
               </h2>
               <p className="text-white/85 text-base mb-4">{banners[activeBanner].subtitle}</p>
-              <button className="bg-white text-blue-600 font-semibold text-sm px-5 py-2.5 rounded-xl w-fit hover:bg-blue-50 transition-colors">
+              <button type="button" className="bg-white text-blue-600 font-semibold text-sm px-5 py-2.5 rounded-xl w-fit hover:bg-blue-50 transition-colors">
                 Смотреть все
               </button>
             </div>
@@ -437,8 +443,10 @@ const Index = () => {
             <div className="absolute bottom-4 left-8 flex gap-1.5">
               {banners.map((_, i) => (
                 <button
+                  type="button"
                   key={i}
                   onClick={() => setActiveBanner(i)}
+                  aria-label={`Баннер ${i + 1}`}
                   className={`rounded-full transition-all ${activeBanner === i ? "w-5 h-2 bg-white" : "w-2 h-2 bg-white/40"}`}
                 />
               ))}
@@ -476,6 +484,7 @@ const Index = () => {
           <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2 md:gap-3">
             {categories.map((cat) => (
               <button
+                type="button"
                 key={cat.label}
                 className="flex flex-col items-center gap-2 p-2 rounded-xl hover:bg-gray-50 transition-colors group"
               >
@@ -555,7 +564,7 @@ const Index = () => {
               <p className="text-white/70 text-sm mb-5">
                 Подпишитесь на Premium и получите кэшбэк 5% на каждую покупку, приоритетную поддержку и эксклюзивные скидки.
               </p>
-              <button className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
+              <button type="button" className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
                 Попробовать бесплатно — 3 месяца
               </button>
             </div>
@@ -635,6 +644,7 @@ const Index = () => {
             { icon: "User", label: "Профиль", active: false },
           ].map((item) => (
             <button
+              type="button"
               key={item.label}
               className={`flex flex-col items-center gap-0.5 px-3 py-1 relative ${item.active ? "text-blue-600" : "text-gray-400"}`}
             >
